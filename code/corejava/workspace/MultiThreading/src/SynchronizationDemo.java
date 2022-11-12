@@ -17,6 +17,21 @@ class Thread1 extends Thread {
 		synchronized(p) { // Locked the Printer(p) Object
 			for(int i = 1 ; i<=20; i++) {
 				p.print(5 * i);
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				if(i == 5) {
+					try {
+						p.wait(10000); // release the lock and enter into wait state
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				
+				
 			}
 		}// unlock the Printer(p) object
 	}
@@ -32,6 +47,7 @@ class Thread2 extends Thread {
 			for(int i = 1 ; i<=20; i++) {
 				p.print(11 * i);
 			}
+			p.notify();
 		} // unlock the Printer(p) object
 	}
 }
