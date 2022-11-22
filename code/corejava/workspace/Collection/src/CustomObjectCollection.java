@@ -17,9 +17,15 @@ public class CustomObjectCollection {
 		emplist.add(e4);
 		emplist.add(e5);
 		
+		System.out.println("============Iterator=================");
 		Iterator<Employee> it = emplist.iterator();
 		while(it.hasNext()) {
 			Employee emp = it.next();
+			System.out.println(emp.getId() + "\t" + emp.getName());
+		}
+		
+		System.out.println("============For Loop=================");
+		for(Employee emp : emplist) {
 			System.out.println(emp.getId() + "\t" + emp.getName());
 		}
 		
