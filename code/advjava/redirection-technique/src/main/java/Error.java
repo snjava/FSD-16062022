@@ -9,20 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/display-msg")
-public class Display extends HttpServlet {
+@WebServlet("/error")
+public class Error extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String message = request.getParameter("msg");
-		String gen = request.getParameter("gender");
-		
-		String prefix = gen.equals("Male") ? "Mr. " : "Ms. ";
-		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		out.print("<h1>"+ prefix +name+", User Send a Message..</h1>");
-		out.print("<h2>"+message+"</h2>");
+		out.print("<div align='center'>");
+			out.print("<h1 style='color:red'>Invalid User name or password</h1>");
+			out.print("<h1> <a href='sign-in'>Login Again</a> </h2>");
+		out.print("</div>");
 	}
 
 }

@@ -27,6 +27,9 @@ public class Message extends HttpServlet {
 					out.print("<br/><br/>");
 					out.print("Message : <input type='text' name='msg'/>");
 					out.print("<br/><br/>");
+					out.print("Select gender : <input type='radio' name='gender' value='Male'/>Male");
+					out.print("<input type='radio' name='gender' value='Female'/>Female");
+					out.print("<br/><br/>");
 					out.print("<button type='Submit'>Send</button>");
 				out.print("</form>");
 				out.print("</div>");

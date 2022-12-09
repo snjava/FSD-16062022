@@ -9,20 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/display-msg")
-public class Display extends HttpServlet {
+@WebServlet("/home")
+public class Home extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String message = request.getParameter("msg");
-		String gen = request.getParameter("gender");
-		
-		String prefix = gen.equals("Male") ? "Mr. " : "Ms. ";
-		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		out.print("<h1>"+ prefix +name+", User Send a Message..</h1>");
-		out.print("<h2>"+message+"</h2>");
+		String username= request.getParameter("uname");
+		out.print("<div align='center'>");
+			out.print("<h1 style='color:green'>Welcome User, "+username+"</h1>");
+		out.print("</div>");
 	}
 
 }
