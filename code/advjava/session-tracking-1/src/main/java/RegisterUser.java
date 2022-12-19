@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/register-user")
 public class RegisterUser extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String contact = request.getParameter("contact");
