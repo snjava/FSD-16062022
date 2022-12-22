@@ -37,7 +37,8 @@
 						<td><%=b.getScheduledOn()%></td>
 						<td><%=b.getUpdatedOn()%></td>
 						<td>
-							<a href="#">Edit</a> / <a href="#">Delete</a>
+							<a href="edit-my-task?id=<%=b.getId()%>">Edit</a> / 
+							<a href="#">Delete</a>
 						</td>
 					</tr>
 				<% } %>

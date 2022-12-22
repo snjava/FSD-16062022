@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.todo.dto.TaskBean;
+import com.todo.dto.TaskBean;import jdk.jshell.spi.ExecutionControl.ExecutionControlException;
 
 public class TaskModel {
 
@@ -56,8 +56,48 @@ public class TaskModel {
 		return list;
 	}
 	
+	public TaskBean getTaskById(int id) {
+		TaskBean bean = new TaskBean();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/fsd16aug","root","root");
+			PreparedStatement stmt = con.prepareStatement("SELECT * FROM task WHERE id=?");
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				bean.setId(rs.getInt("id"));
+				bean.setTitle(rs.getString("title"));
+				bean.setStatus(rs.getString("status"));
+				bean.setScheduledOn(rs.getString("scheduledOn"));
+				bean.setUpdatedOn(rs.getString("updatedOn"));
+			}
+			con.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return bean;
+	}
 	
-	
+	public boolean updateTask(TaskBean bean) {
+		boolean result = false;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/fsd16aug","root","root");
+			PreparedStatement stmt = con.prepareStatement("UPDATE task SET title=?, status=?, scheduledOn=?, updatedOn=? WHERE id=?");
+				stmt.setString(1, bean.getTitle());
+				stmt.setString(2, bean.getStatus());
+				stmt.setString(3, bean.getScheduledOn());
+				stmt.setString(4, bean.getUpdatedOn());
+				stmt.setInt(5, bean.getId());
+			int cnt = stmt.executeUpdate();
+			con.close();
+			result = cnt>0;
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	
 	
