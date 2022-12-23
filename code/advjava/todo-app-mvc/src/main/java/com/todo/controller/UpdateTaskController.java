@@ -30,7 +30,6 @@ public class UpdateTaskController extends HttpServlet {
 			bean.setStatus(status);
 			
 		TaskModel model = new TaskModel();
-		
 		boolean flag = model.updateTask(bean);
 		
 		String code = flag?"1":"0";
